@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <android.support.v4.widget.CircleImageView
+        android:id="@+id/Portrait"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/head_pic" />
+
+    <EditText
+        android:id="@+id/login_name"
+        android:paddingLeft="10dp"
+        android:background="@drawable/edit_bg"
+        android:layout_width="280dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="6dp"
+        android:hint="@string/login_name"/>
+
+    <EditText
+        android:id="@+id/login_pw"
+        android:paddingLeft="10dp"
+        android:background="@drawable/edit_bg"
+        android:layout_width="280dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="4dp"
+        android:hint="@string/login_password"
+        />
+
+    <RelativeLayout
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/rem_pw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/rem_pw"/>
+
+        <TextView
+            android:id="@+id/fg_pw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="@string/fg_pw"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/login"
+        android:background="@drawable/button_bg"
+        android:translationZ="3dp"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:text="@string/login"/>
+
+    <Button
+        android:id="@+id/signup"
+        android:background="@drawable/button_bg"
+        android:translationZ="3dp"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:text="@string/register"/>
+
+</LinearLayout>

@@ -2,26 +2,24 @@ package com.example.administrator.myapplication.Activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
-import com.example.administrator.myapplication.MyApplication;
+import butterknife.ButterKnife;
 
-public class BaseActivity extends AppCompatActivity {
 
-    public MyApplication application;
+public abstract class BaseActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView();
-
-        initData();
+        setContentView(getContentViewResId());
+        ButterKnife.bind(this);
+        init();
     }
 
-    public void setContentView() {
-    }
+    public abstract int getContentViewResId();
 
-    private void initData() {
+    protected void init() {
     }
 
 
