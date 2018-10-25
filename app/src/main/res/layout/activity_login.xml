@@ -2,15 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp">
+    android:layout_height="match_parent">
 
-    <android.support.v4.widget.CircleImageView
+    <ImageView
         android:id="@+id/Portrait"
         android:layout_width="96dp"
         android:layout_height="96dp"
+        android:layout_marginTop="60dp"
         android:layout_marginBottom="30dp"
         android:src="@drawable/head_pic" />
 
@@ -20,6 +20,7 @@
         android:background="@drawable/edit_bg"
         android:layout_width="280dp"
         android:layout_height="35dp"
+        android:lines="1"
         android:layout_marginBottom="6dp"
         android:hint="@string/login_name"/>
 
@@ -29,6 +30,7 @@
         android:background="@drawable/edit_bg"
         android:layout_width="280dp"
         android:layout_height="35dp"
+        android:lines="1"
         android:layout_marginBottom="4dp"
         android:hint="@string/login_password"
         />

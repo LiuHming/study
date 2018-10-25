@@ -2,11 +2,12 @@ package com.example.administrator.myapplication.Entity;
 
 import cn.bmob.v3.BmobUser;
 
-public class UserInfo extends BmobUser {
+public class MyUser extends BmobUser {
 
     private int mAge;
-    private boolean mSax;
+    private boolean mSex;
     private String Nick;
+    private String mDesc;
 
     public String getNick() {
         return Nick;
@@ -16,8 +17,6 @@ public class UserInfo extends BmobUser {
         Nick = nick;
     }
 
-    private String mDesc;
-
     public int getAge() {
         return mAge;
     }
@@ -26,12 +25,12 @@ public class UserInfo extends BmobUser {
         mAge = age;
     }
 
-    public boolean isSax() {
-        return mSax;
+    public boolean isSex() {
+        return mSex;
     }
 
-    public void setSax(boolean sax) {
-        mSax = sax;
+    public void setSex(boolean sex) {
+        mSex = sex;
     }
 
     public String getDesc() {

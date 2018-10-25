@@ -63,17 +63,6 @@ public class GuideAcitivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onPageScrolled(int position, float positionOffset, int
                     positionOffsetPixels) {
-//                // 滚动过程中
-//                // 红色小圆点的移动距离=移动百分比*两个圆点的间距
-//                // 更新小红点距离
-//                int dis = (int) (mDianD * positionOffset) + position * mDianD;//
-//                // 因为移动完一个界面后，百分比会归0，所以要加上移动过的单位position*mPointDis
-//                //获取小圆点的布局属性，更新左边距
-//                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)mDian_on
-//                        .getLayoutParams();
-//                params.leftMargin = dis;// 修改左边距
-//                // 重新设置布局参数
-//                mDian_on.setLayoutParams(params);
             }
 
             @Override
@@ -114,7 +103,7 @@ public class GuideAcitivity extends AppCompatActivity implements View.OnClickLis
             case R.id.Skip:
             case R.id.btnStart:
                 Intent mIntent = new Intent();
-                mIntent.setClass(this,MainActivity.class);
+                mIntent.setClass(this,LoginActivity.class);
                 this.startActivity(mIntent);
         }
     }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:padding="20dp">
+    <EditText
+        android:id="@+id/us_name"
+        android:layout_width="280dp"
+        android:layout_height="35dp"
+        android:lines="1"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/edit_bg"
+        android:hint="用户名"/>
+    <EditText
+        android:id="@+id/us_pw"
+        android:layout_width="280dp"
+        android:layout_height="35dp"
+        android:lines="1"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/edit_bg"
+        android:hint="密码"/>
+    <EditText
+        android:id="@+id/cm_pw"
+        android:layout_width="280dp"
+        android:layout_height="35dp"
+        android:lines="1"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/edit_bg"
+        android:hint="确认密码"/>
+    <Button
+        android:id="@+id/signup"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_bg"
+        android:text="@string/register"/>
+
+</LinearLayout>
