@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ShadeTabView">
+        <attr name="normalIcon" format="reference" />
+        <attr name="selectIcon" format="reference" />
+        <attr name="tab" format="string" />
+        <attr name="textSize" format="dimension" />
+        <attr name="normalTextColor" format="color" />
+        <attr name="selectTextColor" format="color" />
+    </declare-styleable>
+
+
+</resources>

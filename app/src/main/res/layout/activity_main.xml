@@ -1,6 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="#393A3F"
+        app:titleTextColor="@android:color/white"
+        app:popupTheme="@style/ToolbarBase">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+    </android.support.v7.widget.Toolbar>
+
+
+    <!--<android.support.v4.widget.DrawerLayout-->
+        <!--android:id="@+id/drawerlayout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--tools:openDrawer="start">-->
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+        <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#abc" />
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#e7f7f4f4"
+        android:orientation="horizontal">
+
+        <com.example.administrator.myapplication.View.ShadeView
+            android:id="@+id/stv_weiXin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:normalIcon="@drawable/talk"
+            app:selectIcon="@drawable/sele_talk"
+            app:tab="消息" />
+
+        <com.example.administrator.myapplication.View.ShadeView
+            android:id="@+id/stv_address_book"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:normalIcon="@drawable/fre"
+            app:selectIcon="@drawable/sele_fre"
+            app:tab="通讯录" />
+
+        <com.example.administrator.myapplication.View.ShadeView
+            android:id="@+id/stv_discover"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:normalIcon="@drawable/gc"
+            app:selectIcon="@drawable/sele_gc"
+            app:tab="发现" />
+    </LinearLayout>
+
+
+
+        <!--&lt;!&ndash;左边导航栏&ndash;&gt;-->
+        <!--<android.support.design.widget.NavigationView-->
+            <!--android:id="@+id/navigation_view"-->
+            <!--android:layout_width="250dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_gravity="start"-->
+            <!--app:headerLayout="@layout/drawer_header_layout"-->
+            <!--app:menu="@menu/my_navigation_items"-->
+            <!--/>-->
+
+    <!--</android.support.v4.widget.DrawerLayout>-->
 
 </LinearLayout>

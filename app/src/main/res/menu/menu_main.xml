@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/qunliao"
+        android:icon="@drawable/qunliao"
+        android:orderInCategory="80"
+        android:title="发起群聊"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/jiahaoyou"
+        android:icon="@drawable/jiahaoyou"
+        android:orderInCategory="90"
+        android:title="添加好友"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/fankui"
+        android:icon="@drawable/fankui"
+        android:orderInCategory="100"
+        android:title="建议与反馈"
+        app:showAsAction="never" />
+
+
+</menu>
