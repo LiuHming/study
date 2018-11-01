@@ -1,6 +1,6 @@
 package com.example.administrator.myapplication.Activity;
 
-import android.content.Intent;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +29,13 @@ public class SignUpActivity extends BaseActivity {
     @Override
     public int getContentViewResId() {
         return R.layout.activity_signup;
+    }
+
+    @Override
+    protected void init() {
+        super.init();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.signup_tb);
+        initToolBar(toolbar,false);
     }
 
     @OnClick(R.id.signup)

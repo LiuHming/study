@@ -1,8 +1,8 @@
 package com.example.administrator.myapplication.Activity;
 
 import android.content.Intent;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -18,9 +18,6 @@ import com.example.administrator.myapplication.Utils.UserUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.SaveListener;
 
 public class LoginActivity extends BaseActivity {
 
@@ -49,6 +46,9 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void init() {
         super.init();
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.login_tb);
+        initToolBar(toolbar,false);
 
         mrempw = SPUtils.getBoolean(this,"keeppass",false);
         mrem_pw.setChecked(mrempw);

@@ -56,7 +56,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     }
     private void initView() {
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        toolbar.setTitle("");
         toolbar.inflateMenu(R.menu.menu_main);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
             @Override
