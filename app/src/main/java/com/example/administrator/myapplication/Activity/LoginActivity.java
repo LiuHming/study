@@ -5,7 +5,6 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,8 +26,6 @@ public class LoginActivity extends BaseActivity {
     EditText mLogin_name;
     @BindView(R.id.login_pw)
     EditText mLogin_pw;
-    @BindView(R.id.rem_pw)
-    CheckBox mrem_pw;
     @BindView(R.id.fg_pw)
     TextView mfg_pw;
     @BindView(R.id.login)
@@ -49,9 +46,6 @@ public class LoginActivity extends BaseActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.login_tb);
         initToolBar(toolbar,false);
-
-        mrempw = SPUtils.getBoolean(this,"keeppass",false);
-        mrem_pw.setChecked(mrempw);
 
         if(mrempw){
             String name = SPUtils.getString(this, "name", "");

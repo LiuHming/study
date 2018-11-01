@@ -102,6 +102,7 @@ public class GuideAcitivity extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()){
             case R.id.Skip:
             case R.id.btnStart:
+
                 Intent mIntent = new Intent();
                 mIntent.setClass(this,LoginActivity.class);
                 this.startActivity(mIntent);

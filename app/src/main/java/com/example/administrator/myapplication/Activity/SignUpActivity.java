@@ -54,10 +54,10 @@ public class SignUpActivity extends BaseActivity {
                         bu.setAge(0);
                         bu.setSex(true);
                         UserUtils.signup(SignUpActivity.this,bu);
-                        UserUtils.login(SignUpActivity.this,bu);
-                    }else {Toast.makeText(SignUpActivity.this,"两次输入密码不一致",Toast.LENGTH_SHORT);}
+                        finish();
+                    }else {Toast.makeText(SignUpActivity.this,"两次输入密码不一致",Toast.LENGTH_SHORT).show();}
                 }else {
-                    Toast.makeText(SignUpActivity.this,"请完善信息",Toast.LENGTH_SHORT);
+                    Toast.makeText(SignUpActivity.this,"请完善信息",Toast.LENGTH_SHORT).show();
                 }
         }
     }

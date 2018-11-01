@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.widget.Toast;
 
 import com.example.administrator.myapplication.Activity.MainActivity;
-import com.example.administrator.myapplication.Activity.SignUpActivity;
 import com.example.administrator.myapplication.Entity.MyUser;
 
 import java.util.List;
@@ -27,7 +26,8 @@ public class UserUtils {
                     mLogin.setClass(context,MainActivity.class);
                     context.startActivity(mLogin);
                 }else{
-                    LUtils.e(e.toString());
+                    Toast.makeText(context,"用户名或密码不正确", Toast.LENGTH_SHORT).show();
+                    LUtils.e(e.getMessage());
                 }
             }
         });
