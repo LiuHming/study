@@ -47,7 +47,7 @@ public class ShadeView extends FrameLayout {
     /**
      * 选中状态下底部文字默认颜色
      */
-    private final String DEFAULT_SELECT_TEXT_COLOR = "#1afa29";
+    private final String DEFAULT_SELECT_TEXT_COLOR = "#0288d1";
     private float alpha;
     public ShadeView(Context context, AttributeSet attrs) {
         super(context, attrs);

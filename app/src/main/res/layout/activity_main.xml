@@ -13,8 +13,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="#393A3F"
-        app:titleTextColor="@android:color/white"
+        android:background="@color/white"
         app:popupTheme="@style/ToolbarBase">
 
         <TextView
@@ -22,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/app_name"
-            android:textColor="@android:color/white"
+            android:textColor="@color/textblue"
             android:textSize="20sp" />
     </android.support.v7.widget.Toolbar>
 
@@ -51,7 +50,7 @@
         android:orientation="horizontal">
 
         <com.example.administrator.myapplication.View.ShadeView
-            android:id="@+id/stv_weiXin"
+            android:id="@+id/duihua"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -60,7 +59,7 @@
             app:tab="消息" />
 
         <com.example.administrator.myapplication.View.ShadeView
-            android:id="@+id/stv_address_book"
+            android:id="@+id/lianxiren"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -69,13 +68,13 @@
             app:tab="通讯录" />
 
         <com.example.administrator.myapplication.View.ShadeView
-            android:id="@+id/stv_discover"
+            android:id="@+id/guangchang"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:normalIcon="@drawable/gc"
             app:selectIcon="@drawable/sele_gc"
-            app:tab="发现" />
+            app:tab="广场" />
     </LinearLayout>
 
 

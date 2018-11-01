@@ -7,13 +7,13 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="ToolbarBase" parent="ThemeOverlay.AppCompat.Dark">
+    <style name="ToolbarBase" parent="ThemeOverlay.AppCompat.Light">
         <!--控制遮挡和背景色等-->
         <item name="actionOverflowMenuStyle">@style/OverflowMenu</item>
         <!--OverFlow图标style-->
         <item name="android:actionOverflowButtonStyle">@style/OverFlowMenuButton</item>
         <!--文字颜色-->
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/textblue</item>
     </style>
 
     <style name="OverFlowMenuButton">
