@@ -1,9 +1,9 @@
-package com.example.administrator.myapplication.Activity;
+package com.example.HMes.myapplication.Activity;
 
 
 import android.support.v7.widget.Toolbar;
 
-import com.example.administrator.myapplication.R;
+import com.example.HMes.myapplication.R;
 
 public class RetrieveActivity extends BaseActivity{
 

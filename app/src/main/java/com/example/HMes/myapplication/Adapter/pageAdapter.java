@@ -1,4 +1,4 @@
-package com.example.administrator.myapplication.Adapter;
+package com.example.HMes.myapplication.Adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;

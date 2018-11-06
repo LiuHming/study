@@ -7,6 +7,14 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="ThemeSplash" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@drawable/kaiping</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="ToolbarBase" parent="ThemeOverlay.AppCompat.Light">
         <!--控制遮挡和背景色等-->
         <item name="actionOverflowMenuStyle">@style/OverflowMenu</item>

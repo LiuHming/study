@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HMail</string>
+    <string name="app_name">HMes</string>
 
     <string name="login_name">用户名</string>
     <string name="login_password">密码</string>

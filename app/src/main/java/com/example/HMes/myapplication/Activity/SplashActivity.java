@@ -1,4 +1,4 @@
-package com.example.administrator.myapplication.Activity;
+package com.example.HMes.myapplication.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,9 +7,9 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.administrator.myapplication.R;
-import com.example.administrator.myapplication.Utils.SPUtils;
-import com.example.administrator.myapplication.Utils.StaticClass;
+import com.example.HMes.myapplication.R;
+import com.example.HMes.myapplication.Utils.SPUtils;
+import com.example.HMes.myapplication.Utils.StaticClass;
 
 public class SplashActivity extends AppCompatActivity {
 

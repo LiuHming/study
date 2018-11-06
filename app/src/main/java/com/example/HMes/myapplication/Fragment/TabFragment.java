@@ -1,4 +1,4 @@
-package com.example.administrator.myapplication.Fragment;
+package com.example.HMes.myapplication.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -24,7 +24,7 @@ public class TabFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        String mTitle = "HMail";
+        String mTitle = "HMes";
         if (getArguments() != null) {
             mTitle = getArguments().getString("Title", "微信");
         }

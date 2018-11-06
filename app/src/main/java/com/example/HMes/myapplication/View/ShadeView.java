@@ -1,4 +1,4 @@
-package com.example.administrator.myapplication.View;
+package com.example.HMes.myapplication.View;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,7 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.administrator.myapplication.R;
+import com.example.HMes.myapplication.R;
 
 public class ShadeView extends FrameLayout {
     /**

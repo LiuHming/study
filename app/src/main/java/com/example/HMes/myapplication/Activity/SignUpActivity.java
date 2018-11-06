@@ -1,4 +1,4 @@
-package com.example.administrator.myapplication.Activity;
+package com.example.HMes.myapplication.Activity;
 
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -7,9 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.administrator.myapplication.Entity.MyUser;
-import com.example.administrator.myapplication.R;
-import com.example.administrator.myapplication.Utils.UserUtils;
+import com.example.HMes.myapplication.Entity.MyUser;
+import com.example.HMes.myapplication.R;
+import com.example.HMes.myapplication.Utils.UserUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;

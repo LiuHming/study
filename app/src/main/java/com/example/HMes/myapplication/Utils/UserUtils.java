@@ -1,11 +1,11 @@
-package com.example.administrator.myapplication.Utils;
+package com.example.HMes.myapplication.Utils;
 
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-import com.example.administrator.myapplication.Activity.MainActivity;
-import com.example.administrator.myapplication.Entity.MyUser;
+import com.example.HMes.myapplication.Activity.MainActivity;
+import com.example.HMes.myapplication.Entity.MyUser;
 
 import java.util.List;
 

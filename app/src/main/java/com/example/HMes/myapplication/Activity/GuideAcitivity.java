@@ -1,4 +1,4 @@
-package com.example.administrator.myapplication.Activity;
+package com.example.HMes.myapplication.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.administrator.myapplication.R;
-import com.example.administrator.myapplication.Adapter.pageAdapter;
+import com.example.HMes.myapplication.R;
+import com.example.HMes.myapplication.Adapter.pageAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

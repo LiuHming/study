@@ -1,4 +1,4 @@
-package com.example.administrator.myapplication.Entity;
+package com.example.HMes.myapplication.Entity;
 
 import cn.bmob.v3.BmobUser;
 

@@ -10,5 +10,10 @@
         <attr name="selectTextColor" format="color" />
     </declare-styleable>
 
-
+    <declare-styleable name="AppTitle">
+        <attr name="titletype" format="integer" />
+        <attr name="leftIcon" format="reference" />
+        <attr name="title" format="string" />
+        <attr name="menuIcon" format="reference" />
+    </declare-styleable>
 </resources>

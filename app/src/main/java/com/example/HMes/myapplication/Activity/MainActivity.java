@@ -1,21 +1,17 @@
-package com.example.administrator.myapplication.Activity;
+package com.example.HMes.myapplication.Activity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.administrator.myapplication.Fragment.TabFragment;
-import com.example.administrator.myapplication.R;
-import com.example.administrator.myapplication.View.ShadeView;
+import com.example.HMes.myapplication.Fragment.TabFragment;
+import com.example.HMes.myapplication.R;
+import com.example.HMes.myapplication.View.ShadeView;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -141,21 +137,5 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         return R.layout.activity_main;
     }
 
-
-    @SuppressLint("RestrictedApi")
-    @Override
-    protected boolean onPrepareOptionsPanel(View view, Menu menu) {
-        if(menu !=null) {
-            if(menu.getClass() == MenuBuilder.class) {
-                try{
-                    Method m = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
-                    m.setAccessible(true);
-                    m.invoke(menu,true);
-                }catch(Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return super.onPrepareOptionsPanel(view, menu);
-    }
+    
 }

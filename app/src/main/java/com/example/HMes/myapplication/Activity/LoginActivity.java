@@ -1,4 +1,4 @@
-package com.example.administrator.myapplication.Activity;
+package com.example.HMes.myapplication.Activity;
 
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
@@ -10,10 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.administrator.myapplication.Entity.MyUser;
-import com.example.administrator.myapplication.R;
-import com.example.administrator.myapplication.Utils.SPUtils;
-import com.example.administrator.myapplication.Utils.UserUtils;
+import com.example.HMes.myapplication.Entity.MyUser;
+import com.example.HMes.myapplication.R;
+import com.example.HMes.myapplication.Utils.SPUtils;
+import com.example.HMes.myapplication.Utils.UserUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;

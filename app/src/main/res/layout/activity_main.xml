@@ -24,13 +24,6 @@
             android:textSize="20sp" />
     </android.support.v7.widget.Toolbar>
 
-
-    <!--<android.support.v4.widget.DrawerLayout-->
-        <!--android:id="@+id/drawerlayout"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--tools:openDrawer="start">-->
-
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
@@ -48,7 +41,7 @@
         android:background="#e7f7f4f4"
         android:orientation="horizontal">
 
-        <com.example.administrator.myapplication.View.ShadeView
+        <com.example.HMes.myapplication.View.ShadeView
             android:id="@+id/duihua"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -57,7 +50,7 @@
             app:selectIcon="@drawable/sele_talk"
             app:tab="消息" />
 
-        <com.example.administrator.myapplication.View.ShadeView
+        <com.example.HMes.myapplication.View.ShadeView
             android:id="@+id/lianxiren"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -66,7 +59,7 @@
             app:selectIcon="@drawable/sele_fre"
             app:tab="通讯录" />
 
-        <com.example.administrator.myapplication.View.ShadeView
+        <com.example.HMes.myapplication.View.ShadeView
             android:id="@+id/guangchang"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -75,19 +68,5 @@
             app:selectIcon="@drawable/sele_gc"
             app:tab="广场" />
     </LinearLayout>
-
-
-
-        <!--&lt;!&ndash;左边导航栏&ndash;&gt;-->
-        <!--<android.support.design.widget.NavigationView-->
-            <!--android:id="@+id/navigation_view"-->
-            <!--android:layout_width="250dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_gravity="start"-->
-            <!--app:headerLayout="@layout/drawer_header_layout"-->
-            <!--app:menu="@menu/my_navigation_items"-->
-            <!--/>-->
-
-    <!--</android.support.v4.widget.DrawerLayout>-->
 
 </LinearLayout>

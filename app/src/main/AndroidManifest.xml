@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.administrator.myapplication">
+    package="com.example.HMes.myapplication">
 
     <!--允许联网 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -27,7 +27,7 @@
 
 
         <activity android:name=".Activity.SplashActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/ThemeSplash"
             android:windowSoftInputMode="stateAlwaysHidden"
             android:screenOrientation="portrait">
             <intent-filter>
