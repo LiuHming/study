@@ -7,22 +7,16 @@
     android:layout_height="match_parent">
 
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <com.example.HMes.myapplication.View.AppTitle
+        android:id="@+id/main_title"
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:background="@color/white"
-        app:popupTheme="@style/ToolbarBase">
+        android:layout_height="wrap_content"
+        app:leftIcon="@drawable/menu"
+        app:menuIcon="@drawable/caidan"
+        app:titletype="2"
+        app:title="@string/app_name">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/app_name"
-            android:textStyle="bold"
-            android:textColor="@color/textblue"
-            android:textSize="20sp" />
-    </android.support.v7.widget.Toolbar>
+    </com.example.HMes.myapplication.View.AppTitle>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"

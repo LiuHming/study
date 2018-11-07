@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.HMes.myapplication">
 
     <!--允许联网 -->
@@ -13,6 +14,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!--允许读取手机状态 用于创建BmobInstallation-->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--允许读取日志-->
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <!--允许安装应用-->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
 
 

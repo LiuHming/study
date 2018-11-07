@@ -1,6 +1,5 @@
 package com.example.HMes.myapplication.Activity;
 
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -34,8 +33,6 @@ public class SignUpActivity extends BaseActivity {
     @Override
     protected void init() {
         super.init();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.signup_tb);
-        initToolBar(toolbar,false);
     }
 
     @OnClick(R.id.signup)
@@ -46,16 +43,21 @@ public class SignUpActivity extends BaseActivity {
                 String pw = mPsw.getText().toString().trim();
                 String pw1 = mCpw.getText().toString().trim();
                 if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(pw) && !TextUtils.isEmpty(pw1)) {
-                    if(pw.equals(pw1)) {
-                        MyUser bu = new MyUser();
-                        bu.setUsername(name);
-                        bu.setPassword(pw);
-                        bu.setDesc(getString(R.string.df_js));
-                        bu.setAge(0);
-                        bu.setSex(true);
-                        UserUtils.signup(SignUpActivity.this,bu);
-                        finish();
-                    }else {Toast.makeText(SignUpActivity.this,"两次输入密码不一致",Toast.LENGTH_SHORT).show();}
+                    if (5<pw.length() && pw.length()<21) {
+                        if (pw.equals(pw1)) {
+                            MyUser bu = new MyUser();
+                            bu.setUsername(name);
+                            bu.setPassword(pw);
+                            bu.setDesc(getString(R.string.df_js));
+                            bu.setAge(0);
+                            bu.setSex(true);
+                            UserUtils.signup(SignUpActivity.this, bu);
+                            finish();
+                        } else {
+                            Toast.makeText(SignUpActivity.this, "两次输入密码不一致", Toast.LENGTH_SHORT).show();
+                        }
+                    }else {Toast.makeText(SignUpActivity.this, "密码需在6-20位之间", Toast.LENGTH_SHORT).show();
+                    }
                 }else {
                     Toast.makeText(SignUpActivity.this,"请完善信息",Toast.LENGTH_SHORT).show();
                 }

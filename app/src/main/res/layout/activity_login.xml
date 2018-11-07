@@ -40,16 +40,32 @@
         android:layout_marginBottom="6dp"
         android:hint="@string/login_name"/>
 
-    <EditText
+    <RelativeLayout
+        android:layout_width="280dp"
+        android:layout_height="35dp">
+
+        <EditText
         android:id="@+id/login_pw"
         android:paddingLeft="10dp"
         android:background="@drawable/edit_bg"
-        android:layout_width="280dp"
-        android:layout_height="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inputType="textPassword"
         android:lines="1"
         android:layout_marginBottom="4dp"
         android:hint="@string/login_password"
         />
+
+        <CheckBox
+            android:id="@+id/see_pw"
+            android:checked="false"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="8dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:button="@drawable/passw_selector"/>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="280dp"

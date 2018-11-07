@@ -1,8 +1,6 @@
 package com.example.HMes.myapplication.Activity;
 
 
-import android.support.v7.widget.Toolbar;
-
 import com.example.HMes.myapplication.R;
 
 public class RetrieveActivity extends BaseActivity{
@@ -15,8 +13,8 @@ public class RetrieveActivity extends BaseActivity{
     @Override
     protected void init() {
         super.init();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.retrieve_tb);
-        initToolBar(toolbar,true);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.retrieve_tb);
+//        initToolBar(toolbar,true);
     }
 
 }

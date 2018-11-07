@@ -1,10 +1,11 @@
 package com.example.HMes.myapplication.Activity;
 
 import android.content.Intent;
-import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,10 +13,10 @@ import android.widget.Toast;
 
 import com.example.HMes.myapplication.Entity.MyUser;
 import com.example.HMes.myapplication.R;
-import com.example.HMes.myapplication.Utils.SPUtils;
 import com.example.HMes.myapplication.Utils.UserUtils;
 
 import butterknife.BindView;
+import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity {
@@ -33,7 +34,6 @@ public class LoginActivity extends BaseActivity {
     @BindView(R.id.signup)
     Button mSignup;
 
-    private boolean mrempw ;
 
     @Override
     public int getContentViewResId() {
@@ -43,16 +43,6 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void init() {
         super.init();
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.login_tb);
-        initToolBar(toolbar,false);
-
-        if(mrempw){
-            String name = SPUtils.getString(this, "name", "");
-            String password = SPUtils.getString(this, "password", "");
-            mLogin_name.setText(name);
-            mLogin_pw.setText(password);
-        }
     }
 
     @OnClick({R.id.signup,R.id.fg_pw,R.id.login})
@@ -85,6 +75,16 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
+    @OnCheckedChanged(R.id.see_pw)
+    public void onCheckChanged (CompoundButton buttonView, boolean isChecked) {
+        if(isChecked){
+            //选择状态 显示明文--设置为可见的密码
+            mLogin_pw.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+        } else {
+            //默认状态显示密码--设置文本 要一起写才能起作用 InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD
+            mLogin_pw.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        }
+    }
 
 
 }

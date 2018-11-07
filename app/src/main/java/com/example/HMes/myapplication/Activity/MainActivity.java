@@ -4,28 +4,40 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.example.HMes.myapplication.Fragment.TabFragment;
 import com.example.HMes.myapplication.R;
+import com.example.HMes.myapplication.View.AppTitle;
 import com.example.HMes.myapplication.View.ShadeView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+
 public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener, View.OnClickListener{
 
+    @BindView(R.id.main_title)
+    AppTitle apptitle;
+    @BindView(R.id.lefticon)
+    ImageView lefticon;
+    @BindView(R.id.menuicon)
+    ImageView menuicon;
+//    @BindViews({R.id.duihua,R.id.lianxiren,R.id.guangchang})
+//    public List<ShadeView> tabIndicators;
 
     private List<Fragment> tabFragments;
     private List<ShadeView> tabIndicators;
     private ViewPager viewPager;
     private FragmentPagerAdapter adapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        getContentViewResId();
         initData();
         initView();
         viewPager.setAdapter(adapter);
@@ -51,20 +63,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         };
     }
     private void initView() {
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        toolbar.inflateMenu(R.menu.menu_main);
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                switch (menuItem.getItemId()){
-                    case R.id.qunliao:
-                    case R.id.jiahaoyou:
-                    case R.id.fankui:
-                        break;
-                }
-                return false;
-            }
-        });
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.addOnPageChangeListener(this);
         ShadeView duihua = (ShadeView) findViewById(R.id.duihua);
@@ -113,7 +111,9 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     @Override
     public void onPageScrollStateChanged(int state) {
     }
+
     @Override
+//    @OnClick({R.id.duihua,R.id.lianxiren,R.id.guangchang})
     public void onClick(View v) {
         resetTabsStatus();
         switch (v.getId()) {
