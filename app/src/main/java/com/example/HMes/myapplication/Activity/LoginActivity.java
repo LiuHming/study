@@ -80,9 +80,11 @@ public class LoginActivity extends BaseActivity {
         if(isChecked){
             //选择状态 显示明文--设置为可见的密码
             mLogin_pw.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            mLogin_pw.setSelection(mLogin_pw.getText().length());
         } else {
             //默认状态显示密码--设置文本 要一起写才能起作用 InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD
             mLogin_pw.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            mLogin_pw.setSelection(mLogin_pw.getText().length());
         }
     }
 
