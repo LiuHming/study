@@ -4,6 +4,7 @@
     <string name="login_name">用户名</string>
     <string name="login_password">密码</string>
     <string name="login">登录</string>
+    <string name="logout">退出登录</string>
     <string name="register">注册</string>
     <string name="fg_pw">忘记密码</string>
     <string name="df_js">这个人很懒，什么也没有留下。</string>

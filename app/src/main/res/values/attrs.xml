@@ -16,4 +16,10 @@
         <attr name="title" format="string" />
         <attr name="menuIcon" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="SlideMenu">
+        <attr name="sm_type" format="integer" />
+        <attr name="sm_dragoffset" format="dimension" />
+        <attr name="sm_menuoffset" format="dimension" />
+    </declare-styleable>
 </resources>

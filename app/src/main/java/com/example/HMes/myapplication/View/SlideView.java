@@ -11,7 +11,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +21,7 @@ import android.widget.Scroller;
 
 import com.example.HMes.myapplication.Interface.onSwipeProgressListener;
 import com.example.HMes.myapplication.R;
+import com.example.HMes.myapplication.Utils.SizeUtils;
 
 public class SlideView extends ViewGroup {
 
@@ -40,118 +40,12 @@ public class SlideView extends ViewGroup {
     private boolean isMeasured = false; //是否已经测量过
     private boolean isMenuShowing = false; //是否已经显示了菜单
 
-    private int mTransInt = 1; //移动选项 1.固定不动 2.跟随移动 3.视差移动
-    private int mScaleInt = 1;//缩放选项 1.无缩放动画 2.缩放动画
-    private int mAlphaInt = 1;//透明选项 1.无透明效果 2.透明动画
-    private int mRotateInt = 1;//旋转选项 1.无旋转动画 2.中心旋转 3.左3D旋转 4.右3D旋转
-
-    private float mStartScale; //起始缩放值 0~0.8
-    private float mStartAlpha; //起始透明度 0~0.8
-    private int mStart3DAngle; //最小旋转角度 ,只对3D有用 0~80
-    private boolean isFullScreenSwipe = false; //是否全屏滑动
     private ImageView mBackImageView; //设置动态模糊时候的背景
     private View statusView = null;
     private boolean isTranslate = false; //是否透明
     private boolean isTranslated = false; //是否已经设置过透明
     private onSwipeProgressListener mListener; //滑动监听
 
-
-    //设置动画效果代码
-    public void setStyleCode(int type) {
-        try {
-            mType = type;
-            char[] ints = (mType + "").toCharArray();
-            mTransInt = ints[0] - '0';
-            mScaleInt = ints[1] - '0';
-            mAlphaInt = ints[2] - '0';
-            mRotateInt = ints[3] - '0';
-            mMenuView = getChildAt(0);
-            if (mMenuView != null) {
-                mMenuView.setScaleX(1);
-                mMenuView.setScaleY(1);
-                mMenuView.setTranslationX(0);
-                mMenuView.setRotationX(0);
-                mMenuView.setRotationY(0);
-                mMenuView.setRotationX(0);
-                mMenuView.setAlpha(1);
-            }
-        } catch (Exception e) {
-            Log.e("SwipeMenu", "动画代码设置出错,请检查范围");
-        }
-
-    }
-
-    //设置拉出菜单距离右边界的距离
-    public void setMenuOffset(int menuOffset) {
-        this.mMenuOffset = menuOffset;
-    }
-
-    //设置触发滑动的范围,为0则是全屏
-    public void setDragWipeOffset(int dragWipeOffset) {
-        this.mDragWipeOffset = dragWipeOffset;
-    }
-
-    //设置起始缩放
-    public void setStartScale(float minScale) {
-        mStartScale = minScale;
-    }
-
-    //设置起始透明度
-    public void setStartAlpha(float startAlpha) {
-        mStartAlpha = startAlpha;
-    }
-
-    //设置起始3D旋转角度
-    public void setStart3DAngle(int start3DAngle) {
-        mStart3DAngle = start3DAngle;
-    }
-
-
-    //设置全局颜色
-    public void setFullColor(Activity activity, int headColor) {
-        setFull(activity, -1, headColor, 0, 0, 0);
-    }
-
-    //设置图片并且全局沉浸
-    public void setBackImage(Activity activity, int backBitmap, int headColor) {
-        setFull(activity, backBitmap, headColor, 0, 0, 0);
-    }
-
-    //设置模糊背景
-    public void setBlur(Activity activity, int backBitmap, int headColor, float blur) {
-        setFull(activity, backBitmap, headColor, 0.2f, blur, blur);
-    }
-
-    //设置动态模糊背景
-    public void setChangedBlur(Activity activity, int backBitmap, int headColor) {
-        setFull(activity, backBitmap, headColor, 0.2f, 0, 25f);
-    }
-
-    //设置反向动态模糊背景
-    public void setReverseChangedBlur(Activity activity, int backBitmap, int headColor) {
-        setFull(activity, backBitmap, headColor, 0.2f, 25f, 0);
-    }
-
-    //设置指定范围的动态模糊背景
-    public void setChangedBlur(Activity activity, int backBitmap, int headColor, float startBlur, float endBlur) {
-        setFull(activity, backBitmap, headColor, 0.2f, startBlur, endBlur);
-    }
-
-    //设置滑动监听
-    public void setOnMenuShowingListener(onSwipeProgressListener listener) {
-        mListener = listener;
-    }
-
-
-    //改变全局整体颜色
-    public void changeAllColor(int color) throws Exception {
-        if (statusView != null) {
-            setBackgroundColor(color);
-            statusView.setBackgroundColor(color);
-        } else {
-            throw new Exception("you must call the setBackImage method first");
-        }
-    }
 
     //是否显示菜单
     public boolean isMenuShowing() {
@@ -188,18 +82,15 @@ public class SlideView extends ViewGroup {
 
     //从资源文件获取数据
     private void initObtainStyledAttr(Context context, AttributeSet attrs) {
-        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SwipeMenu);
-        mType = array.getInteger(R.styleable.SwipeMenu_sm_type, 1111);
-        mDragWipeOffset = (int) array.getDimension(R.styleable.SwipeMenu_sm_dragoffset, SizeUtil.Dp2Px(context, 100));
-        mMenuOffset = (int) array.getDimension(R.styleable.SwipeMenu_sm_menuoffset, SizeUtil.Dp2Px(context, 50));
-        mStartScale = array.getFloat(R.styleable.SwipeMenu_sm_startscale, 0.2f);
-        mStartAlpha = array.getFloat(R.styleable.SwipeMenu_sm_startalpha, 0.2f);
-        mStart3DAngle = array.getInteger(R.styleable.SwipeMenu_sm_start3dangle, 60);
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SlideMenu);
+        mType = array.getInteger(R.styleable.SlideMenu_sm_type, 1111);
+        mDragWipeOffset = (int) array.getDimension(R.styleable.SlideMenu_sm_dragoffset, SizeUtils.Dp2Px(context, 100));
+        mMenuOffset = (int) array.getDimension(R.styleable.SlideMenu_sm_menuoffset, SizeUtils.Dp2Px(context, 50));
         array.recycle();
     }
 
     //设置全局图片并且沉浸
-    private void setFull(Activity activity, int backRes, int headColor, float scale, float startBlur, float endBlur) {
+    public void setFull(Activity activity, int backRes, int headColor, float scale, float startBlur, float endBlur) {
         Bitmap backBitmap = BitmapFactory.decodeResource(getResources(), backRes);
         int color = getResources().getColor(headColor);
         if (backBitmap != null) { //图片背景
@@ -208,29 +99,8 @@ public class SlideView extends ViewGroup {
             isTranslate = true;
             ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();
             Drawable backDrawable = null;
-            if (startBlur == 0 && endBlur == 0) { //正常背景
-                backDrawable = new BitmapDrawable(backBitmap);
-            } else { //模糊背景
-                if (endBlur == 0) {
-                    backDrawable = new BitmapDrawable(backBitmap);
-                } else {
-                    backDrawable = new BitmapDrawable(BlurUtil.fastblur(getContext(), backBitmap, scale, endBlur));
-                }
-            }
-            if (startBlur != endBlur) { //动态模糊
-                mBackImageView = new ImageView(activity);
-                mBackImageView.setLayoutParams(new LayoutParams(mScreenWidth, mScreenHeight));
-                mBackImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                if (startBlur == 0) {
-                    mBackImageView.setImageBitmap(backBitmap);
-                } else {
-                    mBackImageView.setImageBitmap(BlurUtil.fastblur(getContext(), backBitmap, scale, startBlur));
-                }
-                decorView.addView(mBackImageView, 0);
-            }
+            backDrawable = new BitmapDrawable(getResources(),backBitmap);
             decorView.setBackground(backDrawable);
-
-
         } else { //颜色背景
             isTranslate = false;
             setBackgroundColor(color); //设置背景
@@ -316,7 +186,7 @@ public class SlideView extends ViewGroup {
                     break;
                 }
                 if (!isMenuShowing()) {
-                    if (x >= SizeUtil.Dp2Px(getContext(), mDragWipeOffset)) {
+                    if (x >= SizeUtils.Dp2Px(getContext(), mDragWipeOffset)) {
                         return false;
                     }
                 }
@@ -369,65 +239,23 @@ public class SlideView extends ViewGroup {
         //最小缩放值
         float progress = 1 - getScrollX() * 1.0f / (mScreenWidth - mMenuOffset);
         //移动动画处理
-        switch (mTransInt) {
-            case 1:
-                mMenuView.setTranslationX(getScrollX());
-                break;
-            case 2:
-                break;
-            case 3:
-                mMenuView.setTranslationX(getScrollX() * progress);
-                break;
-        }
+//        switch (mTransInt) {
+//            case 1:
+//                mMenuView.setTranslationX(getScrollX());
+//                break;
+//            case 2:
+//                break;
+//            case 3:
+        mMenuView.setTranslationX(getScrollX() * progress);
+//                break;
+//        }
         //状态栏跟随内容区域滑动
         if (isTranslate) {
             statusView.setTranslationX(progress * (mScreenWidth - mMenuOffset));
         }
-        //缩放动画处理
-        if (mScaleInt == 2) {
-            mMenuView.setScaleX(progress * (1 - mStartScale) + mStartScale);
-            mMenuView.setScaleY(progress * (1 - mStartScale) + mStartScale);
-        }
-        //透明动画处理
-        if (mAlphaInt == 2) {
-            mMenuView.setAlpha(mStartAlpha + (1 - mStartAlpha) * progress);
-        }
-        //旋转动画处理
-        switch (mRotateInt) {
-            case 2: //中心
-                mMenuView.setPivotX(mMenuView.getWidth() / 2);
-                mMenuView.setPivotY(mMenuView.getHeight() / 2);
-                mMenuView.setRotation(progress * 360);
-
-                break;
-            case 3: //3D左侧翻转
-                mMenuView.setPivotX(0);
-                mMenuView.setPivotY(mMenuView.getHeight() / 2);
-                mMenuView.setRotationY(progress * -(90 - mStart3DAngle) + (90 - mStart3DAngle));
-                break;
-            case 4: //x翻转
-                mMenuView.setPivotX(0);
-                mMenuView.setPivotY(0);
-                mMenuView.setRotation(progress * -90 + 90);
-                break;
-            case 5://左上角
-                mMenuView.setPivotX(mMenuView.getWidth() / 2);
-                mMenuView.setPivotY(mMenuView.getHeight() / 2);
-                mMenuView.setRotationX(progress * -(45) + 45);
-                break;
-            case 6://左下角
-                mMenuView.setPivotX(0);
-                mMenuView.setPivotY(mMenuView.getHeight());
-                mMenuView.setRotation(progress * +90 + -90);
-                break;
-        }
         //渐变状态栏
         if (mListener != null) {//进度监听
             mListener.onProgressChange(progress);
-        }
-        //设置动态模糊
-        if (mBackImageView != null) {
-            mBackImageView.setAlpha(progress);
         }
     }
 
@@ -440,7 +268,6 @@ public class SlideView extends ViewGroup {
         }
         scrollBy((int) (-offset), 0); //跟随拖动
         dealScroll();
-
     }
 
 

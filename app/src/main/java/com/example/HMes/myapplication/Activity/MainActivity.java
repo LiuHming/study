@@ -11,26 +11,37 @@ import com.example.HMes.myapplication.Fragment.TabFragment;
 import com.example.HMes.myapplication.R;
 import com.example.HMes.myapplication.View.AppTitle;
 import com.example.HMes.myapplication.View.ShadeView;
+import com.example.HMes.myapplication.View.SlideView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener, View.OnClickListener{
 
+    @BindView(R.id.main_jiemian)
+    SlideView mMainSmenu;
     @BindView(R.id.main_title)
     AppTitle apptitle;
     @BindView(R.id.lefticon)
     ImageView lefticon;
     @BindView(R.id.menuicon)
     ImageView menuicon;
+    @BindView(R.id.viewpager)
+    ViewPager viewPager;
+    @BindView(R.id.duihua)
+    ShadeView duihua;
+    @BindView(R.id.lianxiren)
+    ShadeView lianxiren;
+    @BindView(R.id.guangchang)
+    ShadeView guangchang;
 //    @BindViews({R.id.duihua,R.id.lianxiren,R.id.guangchang})
 //    public List<ShadeView> tabIndicators;
 
     private List<Fragment> tabFragments;
     private List<ShadeView> tabIndicators;
-    private ViewPager viewPager;
     private FragmentPagerAdapter adapter;
 
 
@@ -63,18 +74,12 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         };
     }
     private void initView() {
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.addOnPageChangeListener(this);
-        ShadeView duihua = (ShadeView) findViewById(R.id.duihua);
-        ShadeView lianxiren = (ShadeView) findViewById(R.id.lianxiren);
-        ShadeView guangchang = (ShadeView) findViewById(R.id.guangchang);
         tabIndicators.add(duihua);
         tabIndicators.add(lianxiren);
         tabIndicators.add(guangchang);
-        duihua.setOnClickListener(this);
-        lianxiren.setOnClickListener(this);
-        guangchang.setOnClickListener(this);
         duihua.setIconAlpha(0);
+        mMainSmenu.setFull(this, -1, R.color.white, 0, 0, 0 );
     }
     /**
      * 重置Tab状态
@@ -113,7 +118,15 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     }
 
     @Override
-//    @OnClick({R.id.duihua,R.id.lianxiren,R.id.guangchang})
+    public void onBackPressed() {
+        if (mMainSmenu.isMenuShowing()) {
+            mMainSmenu.hideMenu();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @OnClick({R.id.duihua,R.id.lianxiren,R.id.guangchang,R.id.lefticon})
     public void onClick(View v) {
         resetTabsStatus();
         switch (v.getId()) {
@@ -128,6 +141,13 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
             case R.id.guangchang:
                 tabIndicators.get(2).setIconAlpha(0);
                 viewPager.setCurrentItem(2, false);
+                break;
+            case R.id.menuicon:
+                if (mMainSmenu.isMenuShowing()) {
+                    mMainSmenu.hideMenu();
+                } else {
+                    mMainSmenu.showMenu();
+                }
                 break;
         }
     }

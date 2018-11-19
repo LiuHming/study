@@ -1,66 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.HMes.myapplication.View.SlideView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:id="@+id/main_jiemian"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".Activity.MainActivity">
+
+    <include layout="@layout/slide_menu"/>
+
+    <include layout="@layout/main_cont"/>
 
 
-    <com.example.HMes.myapplication.View.AppTitle
-        android:id="@+id/main_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:leftIcon="@drawable/menu"
-        app:menuIcon="@drawable/caidan"
-        app:titletype="2"
-        app:title="@string/app_name">
 
-    </com.example.HMes.myapplication.View.AppTitle>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-        <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#abc" />
-
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#e7f7f4f4"
-        android:orientation="horizontal">
-
-        <com.example.HMes.myapplication.View.ShadeView
-            android:id="@+id/duihua"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:normalIcon="@drawable/talk"
-            app:selectIcon="@drawable/sele_talk"
-            app:tab="消息" />
-
-        <com.example.HMes.myapplication.View.ShadeView
-            android:id="@+id/lianxiren"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:normalIcon="@drawable/fre"
-            app:selectIcon="@drawable/sele_fre"
-            app:tab="通讯录" />
-
-        <com.example.HMes.myapplication.View.ShadeView
-            android:id="@+id/guangchang"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:normalIcon="@drawable/gc"
-            app:selectIcon="@drawable/sele_gc"
-            app:tab="广场" />
-    </LinearLayout>
-
-</LinearLayout>
+</com.example.HMes.myapplication.View.SlideView>
