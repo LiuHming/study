@@ -29,7 +29,7 @@ public class AppTitle extends LinearLayout {
     public AppTitle (Context context, AttributeSet attrs,int defStyleAttr){
         super(context,attrs,defStyleAttr);
         initview(context,attrs);
-        initdata();
+        init();
 
     }
 
@@ -50,7 +50,7 @@ public class AppTitle extends LinearLayout {
         mTitle.setText(title);
     }
 
-    private void initdata() {
+    private void init() {
         switch (mTitleType){
             case 0:
                 mLefticon.setVisibility(GONE);

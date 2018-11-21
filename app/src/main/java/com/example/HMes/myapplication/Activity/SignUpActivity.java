@@ -4,8 +4,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.example.HMes.myapplication.Entity.MyUser;
 import com.example.HMes.myapplication.R;
 import com.example.HMes.myapplication.Utils.UserUtils;
@@ -54,12 +54,12 @@ public class SignUpActivity extends BaseActivity {
                             UserUtils.signup(SignUpActivity.this, bu);
                             finish();
                         } else {
-                            Toast.makeText(SignUpActivity.this, "两次输入密码不一致", Toast.LENGTH_SHORT).show();
+                            ToastUtils.showShort( "两次输入密码不一致");
                         }
-                    }else {Toast.makeText(SignUpActivity.this, "密码需在6-20位之间", Toast.LENGTH_SHORT).show();
+                    }else {ToastUtils.showShort( "密码需在6-20位之间");
                     }
                 }else {
-                    Toast.makeText(SignUpActivity.this,"请完善信息",Toast.LENGTH_SHORT).show();
+                    ToastUtils.showShort("请完善信息");
                 }
         }
     }

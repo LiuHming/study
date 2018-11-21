@@ -1,14 +1,20 @@
 package com.example.HMes.myapplication.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
+import com.example.HMes.myapplication.Entity.MyUser;
 import com.example.HMes.myapplication.Fragment.TabFragment;
 import com.example.HMes.myapplication.R;
+import com.example.HMes.myapplication.Utils.UserUtils;
 import com.example.HMes.myapplication.View.AppTitle;
 import com.example.HMes.myapplication.View.ShadeView;
 import com.example.HMes.myapplication.View.SlideView;
@@ -18,8 +24,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.bmob.v3.BmobUser;
 
-public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener, View.OnClickListener{
+public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
 
     @BindView(R.id.main_jiemian)
     SlideView mMainSmenu;
@@ -37,13 +44,24 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     ShadeView lianxiren;
     @BindView(R.id.guangchang)
     ShadeView guangchang;
+    @BindView(R.id.logout)
+    Button logout;
+    @BindView(R.id.config)
+    Button main_config;
+    @BindView(R.id.us_ming)
+    TextView mUsname;
 //    @BindViews({R.id.duihua,R.id.lianxiren,R.id.guangchang})
 //    public List<ShadeView> tabIndicators;
 
     private List<Fragment> tabFragments;
     private List<ShadeView> tabIndicators;
     private FragmentPagerAdapter adapter;
+    private long back_pressed;
 
+    @Override
+    public int getContentViewResId() {
+        return R.layout.activity_main;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +72,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         viewPager.setAdapter(adapter);
     }
     private void initData() {
+        MyUser userInfo = BmobUser.getCurrentUser(MyUser.class);
+        mUsname.setText(userInfo.getUsername());
         tabFragments = new ArrayList<>();
         tabIndicators = new ArrayList<>();
         TabFragment weiXinFragment = TabFragment.newInstance(this,"对话");
@@ -117,16 +137,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     public void onPageScrollStateChanged(int state) {
     }
 
-    @Override
-    public void onBackPressed() {
-        if (mMainSmenu.isMenuShowing()) {
-            mMainSmenu.hideMenu();
-        } else {
-            super.onBackPressed();
-        }
-    }
 
-    @OnClick({R.id.duihua,R.id.lianxiren,R.id.guangchang,R.id.lefticon})
+    @OnClick({R.id.duihua,R.id.lianxiren,R.id.guangchang})
     public void onClick(View v) {
         resetTabsStatus();
         switch (v.getId()) {
@@ -142,20 +154,42 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 tabIndicators.get(2).setIconAlpha(0);
                 viewPager.setCurrentItem(2, false);
                 break;
-            case R.id.menuicon:
+        }
+    }
+
+    @OnClick({R.id.config,R.id.lefticon,R.id.logout})
+    public void Onclick (View v){
+        switch (v.getId()){
+            case R.id.config:
+                Intent mintent = new Intent(MainActivity.this,PWchangeActivity.class);
+                startActivity(mintent);
+                break;
+            case R.id.lefticon:
                 if (mMainSmenu.isMenuShowing()) {
                     mMainSmenu.hideMenu();
                 } else {
                     mMainSmenu.showMenu();
                 }
                 break;
+            case R.id.logout:
+                UserUtils.logout(MainActivity.this);
+                break;
         }
     }
 
+
     @Override
-    public int getContentViewResId() {
-        return R.layout.activity_main;
+    public void onBackPressed() {
+        if (mMainSmenu.isMenuShowing()) {
+            mMainSmenu.hideMenu();
+        } else {
+            if (back_pressed + 2000 > System.currentTimeMillis()) {
+                super.onBackPressed();
+            } else {
+                ToastUtils.showShort("再点一次退出应用");
+            }
+            back_pressed = System.currentTimeMillis();
+        }
     }
 
-    
 }

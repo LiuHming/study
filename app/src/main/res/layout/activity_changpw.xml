@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal">
+
+    <com.example.HMes.myapplication.View.AppTitle
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/white"
+        app:popupTheme="@style/ToolbarBase"
+        app:title="@string/app_name"
+        app:leftIcon="@drawable/goback"
+        app:titletype="1"
+        />
+
+    <EditText
+        android:id="@+id/old_pw"
+        android:layout_width="280dp"
+        android:layout_height="35dp"
+        android:lines="1"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/edit_bg"
+        android:hint="旧密码"/>
+    <EditText
+        android:id="@+id/new_pw"
+        android:layout_width="280dp"
+        android:layout_height="35dp"
+        android:lines="1"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/edit_bg"
+        android:hint="新密码"/>
+    <EditText
+        android:id="@+id/new_pw_confirm"
+        android:layout_width="280dp"
+        android:layout_height="35dp"
+        android:lines="1"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/edit_bg"
+        android:hint="确认密码"/>
+    <Button
+        android:id="@+id/changepw"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_bg"
+        android:text="确认修改"/>
+
+</LinearLayout>

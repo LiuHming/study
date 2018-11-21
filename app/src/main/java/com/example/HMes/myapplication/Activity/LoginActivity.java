@@ -9,8 +9,8 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.example.HMes.myapplication.Entity.MyUser;
 import com.example.HMes.myapplication.R;
 import com.example.HMes.myapplication.Utils.UserUtils;
@@ -69,7 +69,7 @@ public class LoginActivity extends BaseActivity {
                     bu2.setPassword(password);
                     UserUtils.login(LoginActivity.this,bu2);
                 }else {
-                    Toast.makeText(this, "输入框不能为空", Toast.LENGTH_SHORT).show();
+                    ToastUtils.showShort("输入框不能为空");
                 }
                 break;
         }

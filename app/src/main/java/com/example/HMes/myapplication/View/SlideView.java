@@ -19,9 +19,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 
+import com.blankj.utilcode.util.SizeUtils;
 import com.example.HMes.myapplication.Interface.onSwipeProgressListener;
 import com.example.HMes.myapplication.R;
-import com.example.HMes.myapplication.Utils.SizeUtils;
 
 public class SlideView extends ViewGroup {
 
@@ -84,8 +84,8 @@ public class SlideView extends ViewGroup {
     private void initObtainStyledAttr(Context context, AttributeSet attrs) {
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SlideMenu);
         mType = array.getInteger(R.styleable.SlideMenu_sm_type, 1111);
-        mDragWipeOffset = (int) array.getDimension(R.styleable.SlideMenu_sm_dragoffset, SizeUtils.Dp2Px(context, 100));
-        mMenuOffset = (int) array.getDimension(R.styleable.SlideMenu_sm_menuoffset, SizeUtils.Dp2Px(context, 50));
+        mDragWipeOffset = (int) array.getDimension(R.styleable.SlideMenu_sm_dragoffset, SizeUtils.dp2px(100));
+        mMenuOffset = (int) array.getDimension(R.styleable.SlideMenu_sm_menuoffset, SizeUtils.dp2px( 60));
         array.recycle();
     }
 
@@ -186,9 +186,11 @@ public class SlideView extends ViewGroup {
                     break;
                 }
                 if (!isMenuShowing()) {
-                    if (x >= SizeUtils.Dp2Px(getContext(), mDragWipeOffset)) {
+                    if (x >= SizeUtils.dp2px( mDragWipeOffset)) {
                         return false;
                     }
+                }else{
+                    return true;
                 }
                 if (x + getScrollX() < mScreenWidth + mDragWipeOffset) {
 
@@ -240,12 +242,12 @@ public class SlideView extends ViewGroup {
         float progress = 1 - getScrollX() * 1.0f / (mScreenWidth - mMenuOffset);
         //移动动画处理
 //        switch (mTransInt) {
-//            case 1:
+//            case 1:固定位置
 //                mMenuView.setTranslationX(getScrollX());
 //                break;
-//            case 2:
+//            case 2:跟随移动
 //                break;
-//            case 3:
+//            case 3:视差移动
         mMenuView.setTranslationX(getScrollX() * progress);
 //                break;
 //        }

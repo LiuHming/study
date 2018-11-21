@@ -62,6 +62,12 @@
             android:screenOrientation="portrait"/>
 
         <activity
+            android:name=".Activity.PWchangeActivity"
+            android:windowSoftInputMode="stateVisible|adjustPan"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"/>
+
+        <activity
             android:name=".Activity.RetrieveActivity"
             android:windowSoftInputMode="stateAlwaysHidden"
             android:configChanges="keyboardHidden|orientation|screenSize"
