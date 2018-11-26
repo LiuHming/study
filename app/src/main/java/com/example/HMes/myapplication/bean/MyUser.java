@@ -1,4 +1,7 @@
-package com.example.HMes.myapplication.Entity;
+package com.example.HMes.myapplication.bean;
+
+
+import com.example.HMes.myapplication.db.NewFriend;
 
 import cn.bmob.v3.BmobUser;
 
@@ -6,15 +9,23 @@ public class MyUser extends BmobUser {
 
     private int mAge;
     private boolean mSex;
-    private String Nick;
+    private String avatar;
     private String mDesc;
 
-    public String getNick() {
-        return Nick;
+    public MyUser() {};
+
+    public MyUser(NewFriend friend){
+        setObjectId(friend.getUid());
+        setUsername(friend.getName());
+        setAvatar(friend.getAvatar());
     }
 
-    public void setNick(String nick) {
-        Nick = nick;
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public int getAge() {
@@ -25,7 +36,7 @@ public class MyUser extends BmobUser {
         mAge = age;
     }
 
-    public boolean isSex() {
+    public boolean getSex() {
         return mSex;
     }
 

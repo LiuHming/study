@@ -1,142 +1,105 @@
 package com.example.HMes.myapplication.View;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
-import com.example.HMes.myapplication.Utils.PopupController;
+import com.blankj.utilcode.util.SizeUtils;
 
 public class CommonPopupWindow extends PopupWindow {
-    final PopupController controller;
 
+    private CommonPopupWindow(Builder builder) {
+        super(builder.context);
+        builder.view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        setContentView(builder.view);
+        setHeight(builder.height == 0?ViewGroup.LayoutParams.WRAP_CONTENT:builder.height);
+        setWidth(builder.width == 0?ViewGroup.LayoutParams.WRAP_CONTENT:builder.width);
+        if (builder.cancelTouchout) {
+            setBackgroundDrawable(new ColorDrawable(0x00000000));
+            //设置透明背景
+            setOutsideTouchable(builder.cancelTouchout);
+            // 设置outside可点击
+            }
+            setFocusable(builder.isFocusable);
+        setTouchable(builder.isTouchable);
+        if(builder.animStyle != 0){
+            setAnimationStyle(builder.animStyle);
+        }
+    }
+    public static final class Builder {
+        private Context context;
+        private int height, width;
+        private boolean cancelTouchout;
+        private boolean isFocusable = true;
+        private boolean isTouchable = true;
+        private View view;
+        private int animStyle;
+        public Builder(Context context) {
+            this.context = context;
+        }
+        public Builder view(int resView) {
+            view = LayoutInflater.from(context).inflate(resView, null);
+            return this;
+        }
+        public Builder view(View resVew){
+            view = resVew;
+            return this;
+        }
+        public Builder heightpx(int val)
+        {
+            height = val;
+            return this;
+        }
+        public Builder widthpx(int val) {
+            width = val;
+            return this;
+        }
+        public Builder heightdp(int val) {
+            height = SizeUtils.dp2px( val);
+            return this;
+        }
+        public Builder widthdp(int val) {
+            width = SizeUtils.dp2px( val);
+            return this;
+        }
+        public Builder heightDimenRes(int dimenRes) {
+            height = context.getResources().getDimensionPixelOffset(dimenRes);
+            return this;
+        }
+        public Builder widthDimenRes(int dimenRes) {
+            width = context.getResources().getDimensionPixelOffset(dimenRes);
+            return this;
+        }
+        public Builder cancelTouchout(boolean val) {
+            cancelTouchout = val;
+            return this;
+        }
+        public Builder isFocusable(boolean val) {
+            isFocusable = val;
+            return this;
+        }
+        public Builder isTouchable(boolean val) {
+            isTouchable = val;
+            return this;
+        }
+        public Builder animStyle(int val){
+            animStyle = val;
+            return this;
+        }
+        public Builder addViewOnclick(int viewRes, View.OnClickListener listener) {
+            view.findViewById(viewRes).setOnClickListener(listener);
+            return this;
+        }
+        public CommonPopupWindow build() {
+            return new CommonPopupWindow(this);
+        }
+    }
     @Override
     public int getWidth() {
-        return controller.mPopupView.getMeasuredWidth();
+        return getContentView().getMeasuredWidth();
     }
 
-    @Override
-    public int getHeight() {
-        return controller.mPopupView.getMeasuredHeight();
-    }
-
-    public interface ViewInterface {
-        void getChildView(View view, int layoutResId);
-    }
-
-    private CommonPopupWindow(Context context) {
-        controller = new PopupController(context, this);
-    }
-
-    @Override
-    public void dismiss() {
-        super.dismiss();
-        controller.setBackGroundLevel(1.0f);
-    }
-
-    public static class Builder {
-        private final PopupController.PopupParams params;
-        private ViewInterface listener;
-
-        public Builder(Context context) {
-            params = new PopupController.PopupParams(context);
-        }
-
-        /**
-         * @param layoutResId 设置PopupWindow 布局ID
-         * @return Builder
-         */
-        public Builder setView(int layoutResId) {
-            params.mView = null;
-            params.layoutResId = layoutResId;
-            return this;
-        }
-
-        /**
-         * @param view 设置PopupWindow布局
-         * @return Builder
-         */
-        public Builder setView(View view) {
-            params.mView = view;
-            params.layoutResId = 0;
-            return this;
-        }
-
-        /**
-         * 设置子View
-         *
-         * @param listener ViewInterface
-         * @return Builder
-         */
-        public Builder setViewOnclickListener(ViewInterface listener) {
-            this.listener = listener;
-            return this;
-        }
-
-        /**
-         * 设置宽度和高度 如果不设置 默认是wrap_content
-         *
-         * @param width 宽
-         * @return Builder
-         */
-        public Builder setWidthAndHeight(int width, int height) {
-            params.mWidth = width;
-            params.mHeight = height;
-            return this;
-        }
-
-        /**
-         * 设置背景灰色程度
-         *
-         * @param level 0.0f-1.0f
-         * @return Builder
-         */
-        public Builder setBackGroundLevel(float level) {
-            params.isShowBg = true;
-            params.bg_level = level;
-            return this;
-        }
-
-        /**
-         * 是否可点击Outside消失
-         *
-         * @param touchable 是否可点击
-         * @return Builder
-         */
-        public Builder setOutsideTouchable(boolean touchable) {
-            params.isTouchable = touchable;
-            return this;
-        }
-
-        /**
-         * 设置动画
-         *
-         * @return Builder
-         */
-        public Builder setAnimationStyle(int animationStyle) {
-            params.isShowAnim = true;
-            params.animationStyle = animationStyle;
-            return this;
-        }
-
-        public CommonPopupWindow create() {
-            final CommonPopupWindow popupWindow = new CommonPopupWindow(params.mContext);
-            params.apply(popupWindow.controller);
-            if (listener != null && params.layoutResId != 0) {
-                listener.getChildView(popupWindow.controller.mPopupView, params.layoutResId);
-            }
-            measureWidthAndHeight(popupWindow.controller.mPopupView);
-            return popupWindow;
-        }
-    }
-
-    /**
-     * 测量View的宽高
-     *
-     * @param view View
-     */
-    public static void measureWidthAndHeight(View view) {
-        int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-        int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-        view.measure(widthMeasureSpec, heightMeasureSpec);
-    }
 }

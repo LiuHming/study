@@ -18,7 +18,7 @@
 
     </com.example.HMes.myapplication.View.AppTitle>
 
-    <android.support.v4.view.ViewPager
+    <com.example.HMes.myapplication.View.MyViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="0dp"

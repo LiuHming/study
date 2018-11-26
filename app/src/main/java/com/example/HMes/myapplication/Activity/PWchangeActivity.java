@@ -7,8 +7,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.blankj.utilcode.util.ToastUtils;
+import com.example.HMes.myapplication.Model.UserModel;
 import com.example.HMes.myapplication.R;
-import com.example.HMes.myapplication.Utils.UserUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -41,7 +41,10 @@ public class PWchangeActivity extends BaseActivity {
             if (!TextUtils.isEmpty(oldpw) && !TextUtils.isEmpty(pw) && !TextUtils.isEmpty(pw1)) {
                 if (5 < pw.length() && pw.length() < 21) {
                     if (pw.equals(pw1)) {
-                        UserUtils.changepw(PWchangeActivity.this, oldpw, pw);
+                        UserModel.getInstance().changepw(oldpw,pw);
+                        UserModel.getInstance().logout();
+                        startActivity(LoginActivity.class,null,true);
+                        finish();
                     } else {
                         ToastUtils.showShort("两次输入密码不一致");
                     }

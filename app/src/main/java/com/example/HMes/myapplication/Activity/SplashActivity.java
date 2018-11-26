@@ -7,12 +7,11 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.HMes.myapplication.Entity.MyUser;
+import com.example.HMes.myapplication.Model.UserModel;
 import com.example.HMes.myapplication.R;
 import com.example.HMes.myapplication.Utils.SPUtils;
 import com.example.HMes.myapplication.Utils.StaticClass;
-
-import cn.bmob.v3.BmobUser;
+import com.example.HMes.myapplication.bean.MyUser;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -26,7 +25,7 @@ public class SplashActivity extends AppCompatActivity {
                     if (isFirst()) {
                         startActivity(new Intent(SplashActivity.this, GuideAcitivity.class));
                     } else {
-                        MyUser userInfo = BmobUser.getCurrentUser(MyUser.class);
+                        MyUser userInfo = UserModel.getInstance().getCurrentUser();
                         if(userInfo != null){
                             startActivity(new Intent(SplashActivity.this, MainActivity.class));
                         }else {

@@ -1,17 +1,21 @@
 package com.example.HMes.myapplication.Activity;
 
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.blankj.utilcode.util.ToastUtils;
-import com.example.HMes.myapplication.Entity.MyUser;
+import com.example.HMes.myapplication.Event.FinishEvent;
+import com.example.HMes.myapplication.Model.BaseModel;
+import com.example.HMes.myapplication.Model.UserModel;
 import com.example.HMes.myapplication.R;
-import com.example.HMes.myapplication.Utils.UserUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.LogInListener;
 
 
 public class SignUpActivity extends BaseActivity {
@@ -42,25 +46,20 @@ public class SignUpActivity extends BaseActivity {
                 String name = mNam.getText().toString().trim();
                 String pw = mPsw.getText().toString().trim();
                 String pw1 = mCpw.getText().toString().trim();
-                if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(pw) && !TextUtils.isEmpty(pw1)) {
-                    if (5<pw.length() && pw.length()<21) {
-                        if (pw.equals(pw1)) {
-                            MyUser bu = new MyUser();
-                            bu.setUsername(name);
-                            bu.setPassword(pw);
-                            bu.setDesc(getString(R.string.df_js));
-                            bu.setAge(0);
-                            bu.setSex(true);
-                            UserUtils.signup(SignUpActivity.this, bu);
-                            finish();
+                UserModel.getInstance().register(name,pw,pw1, new LogInListener() {
+                    @Override
+                    public void done(Object o, BmobException e) {
+                        if (e == null) {
+                            EventBus.getDefault().post(new FinishEvent());
+                            startActivity(MainActivity.class, null, true);
                         } else {
-                            ToastUtils.showShort( "两次输入密码不一致");
+                            if (e.getErrorCode() == BaseModel.CODE_NOT_EQUAL) {
+                                mCpw.setText("");
+                            }
+                            ToastUtils.showShort(e.getMessage());
                         }
-                    }else {ToastUtils.showShort( "密码需在6-20位之间");
                     }
-                }else {
-                    ToastUtils.showShort("请完善信息");
-                }
+                });
         }
     }
 

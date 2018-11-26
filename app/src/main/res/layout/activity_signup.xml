@@ -41,7 +41,7 @@
         android:paddingLeft="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/edit_bg"
-        android:hint="密码"/>
+        android:hint="密码(6-20位)"/>
     <EditText
         android:id="@+id/cm_pw"
         android:layout_width="280dp"

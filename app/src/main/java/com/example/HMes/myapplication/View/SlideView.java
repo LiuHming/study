@@ -30,7 +30,7 @@ public class SlideView extends ViewGroup {
     private float xLast = 0;
     private float yLast = 0;
     private Scroller mScroller;
-    private int mScreenWidth;
+    public int mScreenWidth;
     private int mScreenHeight;
     private View mMenuView;
     private View mContentView;
@@ -189,8 +189,6 @@ public class SlideView extends ViewGroup {
                     if (x >= SizeUtils.dp2px( mDragWipeOffset)) {
                         return false;
                     }
-                }else{
-                    return true;
                 }
                 if (x + getScrollX() < mScreenWidth + mDragWipeOffset) {
 

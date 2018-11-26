@@ -2,7 +2,6 @@ package com.example.HMes.myapplication.Activity;
 
 import android.content.Intent;
 import android.text.InputType;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -11,13 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.ToastUtils;
-import com.example.HMes.myapplication.Entity.MyUser;
+import com.example.HMes.myapplication.Model.UserModel;
 import com.example.HMes.myapplication.R;
-import com.example.HMes.myapplication.Utils.UserUtils;
 
 import butterknife.BindView;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.LogInListener;
 
 public class LoginActivity extends BaseActivity {
 
@@ -63,14 +63,17 @@ public class LoginActivity extends BaseActivity {
                 String name = mLogin_name.getText().toString().trim();
                 String password = mLogin_pw.getText().toString().trim();
                 //是否为空
-                if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(password)){
-                    MyUser bu2 = new MyUser();
-                    bu2.setUsername(name);
-                    bu2.setPassword(password);
-                    UserUtils.login(LoginActivity.this,bu2);
-                }else {
-                    ToastUtils.showShort("输入框不能为空");
-                }
+                UserModel.getInstance().login(name , password , new LogInListener() {
+                    @Override
+                    public void done(Object o, BmobException e) {
+                        if (e == null) {
+                            //登录成功
+                            startActivity(MainActivity.class, null, true);
+                        } else {
+                            ToastUtils.showShort(e.getMessage());
+                        }
+                    }
+                });
                 break;
         }
     }

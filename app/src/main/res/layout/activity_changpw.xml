@@ -36,7 +36,7 @@
         android:paddingLeft="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/edit_bg"
-        android:hint="新密码"/>
+        android:hint="新密码(6-20位)"/>
     <EditText
         android:id="@+id/new_pw_confirm"
         android:layout_width="280dp"

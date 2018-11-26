@@ -1,10 +1,15 @@
 package com.example.HMes.myapplication.Activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
 import com.example.HMes.myapplication.View.AppTitle;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.ButterKnife;
 
@@ -38,5 +43,31 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
+    public void startActivity(Class<? extends Activity> target, Bundle bundle, boolean finish) {
+        Intent intent = new Intent();
+        intent.setClass(this, target);
+        if (bundle != null)
+            intent.putExtra(getPackageName(), bundle);
+        startActivity(intent);
+        if (finish)
+            finish();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void onEvent(Boolean empty){
+
+    }
 
 }

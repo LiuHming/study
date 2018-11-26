@@ -7,10 +7,11 @@ import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.HMes.myapplication.Activity.LoginActivity;
 import com.example.HMes.myapplication.Activity.MainActivity;
-import com.example.HMes.myapplication.Entity.MyUser;
+import com.example.HMes.myapplication.bean.MyUser;
 
 import java.util.List;
 
+import cn.bmob.newim.BmobIM;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
@@ -98,11 +99,12 @@ public class UserUtils {
     }
 
     public static void logout(Context context){
+        //TODO 连接：3.2、退出登录需要断开与IM服务器的连接
+        BmobIM.getInstance().disConnect();
         MyUser.logOut();   //清除缓存用户对象
         MyUser currentUser = MyUser.getCurrentUser(MyUser.class); // 现在的currentUser是null了
         Intent intent = new Intent(context,LoginActivity.class);
         startActivity(intent);
     }
-
 
 }
